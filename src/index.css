@@ -1,1 +1,29 @@
+.custom-popup {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .custom-popup h1 {
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .custom-popup p {
+    margin: 0;
+    padding: 4px 0;
+  }
 
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #403f44;
+    color: #fff;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+
+.custom-popup{
+    color: #fff;
+    font-size: 11px;
+}
+
+.custom-popup p{
+    padding: 1px 0;
+}
