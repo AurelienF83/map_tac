@@ -11,7 +11,7 @@ def get_locations():
     df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240304.xlsx')
 
     # Nettoyer le DataFrame en supprimant les lignes avec des NaN dans 'Adresse Parc' ou 'Nom du parc'
-    df = df.dropna(subset=['Adresse Parc', 'Nom du parc'])
+    df = df.dropna(subset=['Adresse Parc', 'Nom du parc', 'Date', 'Adresse PS'])
 
     # Diviser 'Adresse Parc' en deux nouvelles colonnes 'lat' et 'lng'
     coords = df['Adresse Parc'].str.split(',', expand=True)
@@ -20,12 +20,14 @@ def get_locations():
 
     # Assigner la colonne 'Nom du parc' à 'name'
     df['name'] = df['Nom du parc']
+    df['date'] = df['Date'].dt.strftime('%d/%m/%Y')
+    df['ps'] = df ['Adresse PS']
 
     # Supprimer à nouveau les lignes où 'lat' ou 'lng' sont NaN après la conversion
     df = df.dropna(subset=['lat', 'lng'])
 
     # Créer une liste de dictionnaires pour la conversion en JSON
-    locations = df[['lat', 'lng', 'name']].to_dict(orient='records')
+    locations = df[['lat', 'lng', 'name', 'date', 'ps']].to_dict(orient='records')
 
     return jsonify(locations)
 

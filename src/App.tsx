@@ -5,7 +5,9 @@ import "leaflet/dist/leaflet.css";
 type Location = {
   lat: number;
   lng: number;
-  name: string; // Ajoutez cette propriété pour le nom du parc
+  name: string;
+  date: number;
+  ps: string;
 };
 
 const App = () => {
@@ -16,7 +18,7 @@ const App = () => {
     fetch("http://127.0.0.1:5000/locations")
       .then((response) => response.json())
       .then((data: Location[]) => {
-        setLocations(data); // Since data is already in the correct format, you can set it directly
+        setLocations(data);
       })
       .catch((error) => console.error("Error fetching data: ", error));
   }, []);
@@ -31,7 +33,7 @@ const App = () => {
       // Un objet pour suivre les coordonnées déjà utilisées
       const coordsUsed: { [key: string]: number } = {};
 
-      locations.forEach(({ lat, lng, name }) => {
+      locations.forEach(({ lat, lng, name, date, ps }) => {
         // Créer une clé unique pour la latitude et longitude
         const key = `${lat}-${lng}`;
         // Vérifier si les coordonnées sont déjà utilisées
@@ -46,8 +48,16 @@ const App = () => {
           coordsUsed[key] = 1;
         }
 
-        // Ajouter le marqueur avec les coordonnées potentiellement ajustées
-        L.marker([lat, lng]).addTo(map).bindPopup(name);
+        const popupContent = `
+        <div class="custom-popup">
+          <h4>${name}</h4>
+          <p>Coordonnées : ${lat}, ${lng}</p>
+          <p>Poste Source : ${ps}</p>
+          <p>Date de Mise en Service : ${date} </p>
+        </div>
+      `;
+
+        L.marker([lat, lng]).addTo(map).bindPopup(popupContent);
       });
 
       return () => {
