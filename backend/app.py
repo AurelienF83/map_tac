@@ -7,7 +7,6 @@ CORS(app)
 
 @app.route('/locations', methods=['GET'])
 def get_locations():
-    # Lire le fichier Excel
     df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240304.xlsx')
 
     # Nettoyer le DataFrame en supprimant les lignes avec des NaN dans 'les colonnes du xlsx
