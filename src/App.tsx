@@ -30,24 +30,22 @@ const App = () => {
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
 
-      // Un objet pour suivre les coordonnées déjà utilisées
+      // Fonction offset coordonnées GPS identiques
       const coordsUsed: { [key: string]: number } = {};
 
       locations.forEach(({ lat, lng, name, date, ps }) => {
-        // Créer une clé unique pour la latitude et longitude
         const key = `${lat}-${lng}`;
-        // Vérifier si les coordonnées sont déjà utilisées
+
         if (coordsUsed[key]) {
-          // Ajuster légèrement les coordonnées si nécessaire
-          const offset = 0.0004 * coordsUsed[key]; // ajustement de 0.0001 pour chaque marqueur superposé
+          const offset = 0.0004 * coordsUsed[key];
           lat += offset;
           lng += offset;
           coordsUsed[key] += 1;
         } else {
-          // Sinon, enregistrer la latitude et la longitude utilisées
           coordsUsed[key] = 1;
         }
 
+        // Info popup Marker
         const popupContent = `
         <div class="custom-popup">
           <h4>${name}</h4>
