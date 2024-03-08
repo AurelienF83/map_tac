@@ -1,5 +1,5 @@
-import Map from "./components/Map";
-import Badge from "./components/Navbar";
+import Map from "./Map";
+import Badge from "./Navbar";
 
 const App = () => {
   return (
