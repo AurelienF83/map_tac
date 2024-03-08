@@ -1,11 +1,11 @@
-import Map from "./Map";
-import Badge from "./Navbar";
+import Map from "./components/Map";
+import SearchBar from "./components/Searchbar";
 
 const App = () => {
   return (
     <div>
       <Map />
-      <Badge />
+      <SearchBar />
     </div>
   );
 };
