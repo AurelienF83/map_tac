@@ -14,7 +14,7 @@ function SearchBar({ onSearch, placeholder = "Recherche..." }: SearchBarProps) {
   };
 
   return (
-    <div className="flex justify-center mt-6 mb-6">
+    <div className="flex justify-center py-6">
       <form onSubmit={handleSubmit} className="flex border-2 border-gray-200 rounded-lg overflow-hidden">
         <input
           type="text"

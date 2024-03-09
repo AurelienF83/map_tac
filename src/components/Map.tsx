@@ -33,6 +33,24 @@ function Map({ searchQuery }: MapProps) {
         attribution: "© OpenStreetMap contributors",
       }).addTo(mapInstance);
 
+      // Charger le fichier GeoJSON (remplacez 'url_du_fichier.geojson' par l'URL réelle ou le chemin local)
+      // fetch("/region.geojson")
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     L.geoJSON(data, {
+      //       style: () => ({
+      //         color: "#4a83ec", // Couleur des bordures des régions
+      //         //fillColor: "#1a1d62", // Couleur de remplissage des régions
+      //         fillOpacity: 0, // Transparence du remplissage
+      //       }),
+      //       onEachFeature: (feature, layer) => {
+      //         if (feature.properties && feature.properties.nom) {
+      //           layer.bindPopup(`<h4>Région: ${feature.properties.nom}</h4>`);
+      //         }
+      //       },
+      //     }).addTo(mapInstance);
+      //   });
+
       const coordsUsed: { [key: string]: number } = {};
 
       // Filtre de recherche (name, ps, date)
@@ -79,7 +97,7 @@ function Map({ searchQuery }: MapProps) {
     }
   }, [locations, searchQuery]);
 
-  return <div id="map" style={{ height: "650px", width: "100%" }} ref={mapRef} />;
+  return <div id="map" style={{ height: "650px", width: "60%" }} ref={mapRef} />;
 }
 
 export default Map;

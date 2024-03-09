@@ -10,9 +10,11 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-slate-700">
       <SearchBar onSearch={handleSearch} />
-      <Map searchQuery={searchQuery} />
+      <div className="flex justify-center">
+        <Map searchQuery={searchQuery} />
+      </div>
     </div>
   );
 };
