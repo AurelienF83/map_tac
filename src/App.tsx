@@ -1,11 +1,18 @@
+import { useState } from "react";
 import Map from "./components/Map";
-import SearchBar from "./components/Searchbar";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div>
-      <Map />
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
+      <Map searchQuery={searchQuery} />
     </div>
   );
 };
