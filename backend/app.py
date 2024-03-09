@@ -7,7 +7,9 @@ CORS(app)
 
 @app.route('/locations', methods=['GET'])
 def get_locations():
-    df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240304.xlsx')
+    # df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240304.xlsx')
+    
+    df = pd.read_excel('C:\\Users\\Aurelien\\Desktop\\map_tac\\Mise en service_TAC_20240304.xlsx')
 
     # Nettoyer le DataFrame en supprimant les lignes avec des NaN dans 'les colonnes du xlsx
     df = df.dropna(subset=['Adresse Parc', 'Nom du parc', 'Date', 'Adresse PS'])
