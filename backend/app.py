@@ -25,7 +25,7 @@ def get_locations():
     # Supprimer à nouveau les lignes où 'lat' ou 'lng' sont NaN après la conversion
     df = df.dropna(subset=['lat', 'lng'])
 
-    # Liste retournée au JSON
+    # Liste retournée au format JSON
     locations = df[['lat', 'lng', 'name', 'date', 'ps']].to_dict(orient='records')
 
     return jsonify(locations)
