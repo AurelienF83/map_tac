@@ -2,13 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .custom-popup {
-    font-size: 16px;
     color: #333;
   }
   
   .custom-popup h4 {
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
     font-weight: bolder;
     margin-bottom: 4px;
@@ -16,7 +20,7 @@
   
   .custom-popup p {
     margin: 0;
-    padding: 4px 0;
+    padding: 1px 0;
   }
 
   .leaflet-popup-content-wrapper, .leaflet-popup-tip {
@@ -30,6 +34,3 @@
     font-size: 11px;
 }
 
-.custom-popup p{
-    padding: 1px 0;
-}
