@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Map from "./components/Map";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/Searchbar";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
