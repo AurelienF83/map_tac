@@ -25,7 +25,7 @@ const Map = () => {
 
   useEffect(() => {
     if (mapRef.current) {
-      const map = L.map(mapRef.current).setView([46.5, 2.2], 6);
+      const map = L.map(mapRef.current).setView([46.8, 2.2], 6);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
@@ -64,7 +64,7 @@ const Map = () => {
     }
   }, [locations]);
 
-  return <div id="map" style={{ height: "700px", width: "100%" }} ref={mapRef} />;
+  return <div id="map" style={{ height: "650px", width: "100%" }} ref={mapRef} />;
 };
 
 export default Map;
