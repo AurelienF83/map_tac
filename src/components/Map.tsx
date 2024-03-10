@@ -33,15 +33,16 @@ function Map({ searchQuery }: MapProps) {
         attribution: "© OpenStreetMap contributors",
       }).addTo(mapInstance);
 
-      // Charger le fichier GeoJSON (remplacez 'url_du_fichier.geojson' par l'URL réelle ou le chemin local)
+      // Fonction GeoJson Regions France
       // fetch("/region.geojson")
       //   .then((response) => response.json())
       //   .then((data) => {
       //     L.geoJSON(data, {
       //       style: () => ({
-      //         color: "#4a83ec", // Couleur des bordures des régions
+      //         color: "#000", // Couleur des bordures des régions
       //         //fillColor: "#1a1d62", // Couleur de remplissage des régions
       //         fillOpacity: 0, // Transparence du remplissage
+      //         weight: 0.5,
       //       }),
       //       onEachFeature: (feature, layer) => {
       //         if (feature.properties && feature.properties.nom) {
@@ -50,8 +51,6 @@ function Map({ searchQuery }: MapProps) {
       //       },
       //     }).addTo(mapInstance);
       //   });
-
-      const coordsUsed: { [key: string]: number } = {};
 
       // Filtre de recherche (name, ps, date)
       const filteredLocations = searchQuery
@@ -68,7 +67,9 @@ function Map({ searchQuery }: MapProps) {
         const { name, date, ps } = location;
 
         // Fonction offset
+
         const key = `${lat}-${lng}`;
+        const coordsUsed: { [key: string]: number } = {};
 
         if (coordsUsed[key]) {
           const offset = 0.0004 * coordsUsed[key];
