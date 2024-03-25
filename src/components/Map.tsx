@@ -97,7 +97,7 @@ function Map({ searchQuery }: MapProps) {
     }
   }, [locations, searchQuery]);
 
-  return <div id="map" style={{ height: "650px", width: "60%" }} ref={mapRef} />;
+  return <div id="map" style={{ height: "650px", width: "100%" }} ref={mapRef} />;
 }
 
 export default Map;
