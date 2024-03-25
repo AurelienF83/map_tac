@@ -62,14 +62,13 @@ function Map({ searchQuery }: MapProps) {
           )
         : locations;
 
+      // Fonction offset
+      const coordsUsed: { [key: string]: number } = {};
       filteredLocations.forEach((location) => {
         let { lat, lng } = location;
         const { name, date, ps } = location;
 
-        // Fonction offset
-
         const key = `${lat}-${lng}`;
-        const coordsUsed: { [key: string]: number } = {};
 
         if (coordsUsed[key]) {
           const offset = 0.0004 * coordsUsed[key];
