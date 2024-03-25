@@ -11,8 +11,10 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-700">
-      <SearchBar onSearch={handleSearch} />
-      <div className="flex justify-center">
+      <div className="flex justify-center py-6">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <div className="flex justify-center m-2">
         <Map searchQuery={searchQuery} />
       </div>
     </div>
