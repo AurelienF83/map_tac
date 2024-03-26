@@ -10,7 +10,7 @@ const App = () => {
   };
 
   const [selectedRegion, setSelectedRegion] = useState<RegionFeature | null>(null);
-  const handleSelectRegion = (region: RegionFeature) => {
+  const handleSelectRegion = (region: RegionFeature | null) => {
     setSelectedRegion(region);
   };
 
