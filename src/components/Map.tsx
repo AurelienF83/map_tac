@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { RegionFeature } from "./Filter"; // Assurez-vous que le chemin d'import est correct
+import { RegionFeature } from "./Filter";
 
 type Location = {
   lat: number;
@@ -19,6 +19,7 @@ type MapProps = {
 function Map({ searchQuery, selectedRegion }: MapProps) {
   const mapRef = useRef<L.Map | null>(null);
   const [locations, setLocations] = useState<Location[]>([]);
+  const geoJsonLayerRef = useRef<L.GeoJSON | null>(null);
 
   // Initialisation de la carte et récupération des localisations
   useEffect(() => {
@@ -45,9 +46,7 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
         }
       });
 
-      // Fonction pour gérer les coordonnées doublées
-      const coordsUsed: { [key: string]: number } = {};
-
+      // Fonction Recherche
       const filteredLocations = searchQuery
         ? locations.filter(
             (location) =>
@@ -57,6 +56,8 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
           )
         : locations;
 
+      // Fonction Offset
+      const coordsUsed: { [key: string]: number } = {};
       filteredLocations.forEach((location) => {
         let { lat, lng } = location;
         const { name, date, ps } = location;
@@ -86,6 +87,10 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
   // Ajustement de la vue de la carte pour la région sélectionnée
   useEffect(() => {
     if (selectedRegion && mapRef.current) {
+      if (geoJsonLayerRef.current) {
+        mapRef.current.removeLayer(geoJsonLayerRef.current);
+      }
+
       const geoJsonLayer = L.geoJSON(selectedRegion.geometry, {
         style: {
           color: "#000",
@@ -94,6 +99,7 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
         },
       }).addTo(mapRef.current);
       mapRef.current.fitBounds(geoJsonLayer.getBounds());
+      geoJsonLayerRef.current = geoJsonLayer;
     }
   }, [selectedRegion]);
 
