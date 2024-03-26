@@ -1,33 +1,49 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
-type FilterProps = {
-  regions: string[];
-  selectedRegions: string[];
-  onRegionChange: (region: string) => void;
-  onZoomToRegion: (region: string) => void; // Ajout de la nouvelle prop
+export type RegionFeature = {
+  properties: {
+    nom: string;
+  };
+  geometry: {
+    type: "Polygon";
+    coordinates: number[][][];
+  };
 };
 
-const Filter: React.FC<FilterProps> = ({ regions, selectedRegions, onRegionChange, onZoomToRegion }) => {
-  const handleRegionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const regionName = event.target.value;
-    onRegionChange(regionName);
-    if (event.target.checked) {
-      onZoomToRegion(regionName); // Appeler le zoom lorsque la checkbox est cochée
-    }
+export type FilterProps = {
+  onSelectRegion: (region: RegionFeature) => void;
+};
+
+const Filter: React.FC<FilterProps> = ({ onSelectRegion }) => {
+  const [regions, setRegions] = useState<RegionFeature[]>([]);
+
+  useEffect(() => {
+    fetch("/region.geojson")
+      .then((response) => response.json())
+      .then((data) => {
+        setRegions(data.features as RegionFeature[]);
+      })
+      .catch((error) => console.error("Error loading GeoJSON:", error));
+  }, []);
+  const handleSelectRegion = (region: RegionFeature) => {
+    onSelectRegion(region);
   };
 
   return (
     <div>
-      {regions.map((region) => (
-        <div key={region}>
+      {regions.map((region, index) => (
+        <div key={index} className="flex items-center">
           <input
             type="checkbox"
-            id={region}
-            value={region}
-            checked={selectedRegions.includes(region)}
-            onChange={handleRegionChange}
+            id={`checkbox-${region.properties.nom}`}
+            name={region.properties.nom}
+            value={region.properties.nom}
+            className="cursor-pointer h-3 w-3"
+            onClick={() => handleSelectRegion(region)}
           />
-          <label htmlFor={region}>{region}</label>
+          <label htmlFor={`checkbox-${region.properties.nom}`} className="cursor-pointer ml-1 text-xs text-white">
+            {region.properties.nom}
+          </label>
         </div>
       ))}
     </div>
