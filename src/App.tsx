@@ -19,11 +19,13 @@ const App = () => {
       <div className="flex justify-center py-6">
         <SearchBar onSearch={handleSearch} />
       </div>
-      <div className="">
-        <Filter onSelectRegion={handleSelectRegion} />
-      </div>
-      <div className="flex justify-center m-2">
-        <Map searchQuery={searchQuery} selectedRegion={selectedRegion} />
+      <div className="flex">
+        <div className="w-48">
+          <Filter onSelectRegion={handleSelectRegion} />
+        </div>
+        <div className="flex-grow">
+          <Map searchQuery={searchQuery} selectedRegion={selectedRegion} />
+        </div>
       </div>
     </div>
   );
