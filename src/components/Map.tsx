@@ -72,12 +72,12 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
         }
 
         L.marker([lat, lng]).addTo(mapRef.current as L.Map).bindPopup(`
-          <div>
-            <h4>${name}</h4>
-            <p>Coordonnées : ${lat}, ${lng}</p>
-            <p>Poste Source : ${ps}</p>
-            <p>Date de Mise en Service : ${date}</p>
-          </div>
+        <div class="custom-popup">
+          <h4>${name}</h4>
+          <p>Coordonnées : ${lat}, ${lng}</p>
+          <p>Poste Source : ${ps}</p>
+          <p>Date de Mise en Service : ${date}</p>
+        </div>
         `);
       });
     }
