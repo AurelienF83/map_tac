@@ -15,17 +15,15 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-700">
-      <div className="flex justify-center py-6">
-        <SearchBar onSearch={handleSearch} />
+    <div className="flex min-h-screen bg-slate-900">
+      <div className="w-48">
+        <div className="mb-4">
+          <SearchBar onSearch={handleSearch} />
+        </div>
+        <Filter onSelectRegion={handleSelectRegion} />
       </div>
-      <div className="flex">
-        <div className="w-48">
-          <Filter onSelectRegion={handleSelectRegion} />
-        </div>
-        <div className="flex-grow">
-          <Map searchQuery={searchQuery} selectedRegion={selectedRegion} />
-        </div>
+      <div className="flex-grow">
+        <Map searchQuery={searchQuery} selectedRegion={selectedRegion} />
       </div>
     </div>
   );
