@@ -34,18 +34,22 @@ const Filter = ({ onSelectRegion }: FilterProps) => {
   };
   return (
     <div>
+      <h1 className="text-white mb-2">Région</h1>
       {regions.map((region, index) => (
-        <div key={index} className="flex items-center">
+        <div key={index} className="flex items-center mb-1">
           <input
             type="checkbox"
             id={`checkbox-${region.properties.nom}`}
-            name="region-group" // Utiliser un nom commun pour toutes les checkboxes
+            name="region-group"
             value={region.properties.nom}
             className="cursor-pointer h-3 w-3"
-            checked={selectedRegionName === region.properties.nom} // Contrôler la checkbox avec l'état
-            onChange={(e) => handleChange(region, e)} // Passer à la nouvelle fonction handleChange
+            checked={selectedRegionName === region.properties.nom}
+            onChange={(e) => handleChange(region, e)}
           />
-          <label htmlFor={`checkbox-${region.properties.nom}`} className="cursor-pointer ml-1 text-xs text-white">
+          <label
+            htmlFor={`checkbox-${region.properties.nom}`}
+            className="w-48  cursor-pointer ml-1 text-xs text-white hover:bg-slate-700"
+          >
             {region.properties.nom}
           </label>
         </div>
