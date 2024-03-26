@@ -14,7 +14,7 @@ export type FilterProps = {
   onSelectRegion: (region: RegionFeature) => void;
 };
 
-const Filter: React.FC<FilterProps> = ({ onSelectRegion }) => {
+const Filter = ({ onSelectRegion }: FilterProps) => {
   const [regions, setRegions] = useState<RegionFeature[]>([]);
 
   useEffect(() => {
@@ -25,9 +25,6 @@ const Filter: React.FC<FilterProps> = ({ onSelectRegion }) => {
       })
       .catch((error) => console.error("Error loading GeoJSON:", error));
   }, []);
-  const handleSelectRegion = (region: RegionFeature) => {
-    onSelectRegion(region);
-  };
 
   return (
     <div>
@@ -39,7 +36,7 @@ const Filter: React.FC<FilterProps> = ({ onSelectRegion }) => {
             name={region.properties.nom}
             value={region.properties.nom}
             className="cursor-pointer h-3 w-3"
-            onClick={() => handleSelectRegion(region)}
+            onClick={() => onSelectRegion(region)}
           />
           <label htmlFor={`checkbox-${region.properties.nom}`} className="cursor-pointer ml-1 text-xs text-white">
             {region.properties.nom}

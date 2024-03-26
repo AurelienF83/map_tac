@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { RegionFeature } from "./Filter";
+import { RegionFeature } from "./Filter"; // Assurez-vous que le chemin d'import est correct
 
 type Location = {
   lat: number;
@@ -13,7 +13,7 @@ type Location = {
 
 type MapProps = {
   searchQuery: string;
-  selectedRegion?: RegionFeature | null; // Ajouté pour la région sélectionnée
+  selectedRegion?: RegionFeature | null;
 };
 
 function Map({ searchQuery, selectedRegion }: MapProps) {
@@ -35,9 +35,19 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
       .catch((error) => console.error("Error fetching data: ", error));
   }, []);
 
-  // Affichage des localisations en fonction de searchQuery
+  // Gestion de l'affichage des localisations et de la recherche
   useEffect(() => {
     if (mapRef.current) {
+      // Suppression des marqueurs existants
+      mapRef.current!.eachLayer((layer) => {
+        if (layer instanceof L.Marker) {
+          mapRef.current!.removeLayer(layer);
+        }
+      });
+
+      // Fonction pour gérer les coordonnées doublées
+      const coordsUsed: { [key: string]: number } = {};
+
       const filteredLocations = searchQuery
         ? locations.filter(
             (location) =>
@@ -48,31 +58,42 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
         : locations;
 
       filteredLocations.forEach((location) => {
-        L.marker([location.lat, location.lng]).addTo(mapRef.current as L.Map).bindPopup(`
-            <div>
-              <h4>${location.name}</h4>
-              <p>Coordonnées : ${location.lat}, ${location.lng}</p>
-              <p>Poste Source : ${location.ps}</p>
-              <p>Date de Mise en Service : ${location.date}</p>
-            </div>
-          `);
+        let { lat, lng } = location;
+        const { name, date, ps } = location;
+        const key = `${lat}-${lng}`;
+
+        if (coordsUsed[key]) {
+          const offset = 0.0004 * coordsUsed[key];
+          lat += offset;
+          lng += offset;
+          coordsUsed[key] += 1;
+        } else {
+          coordsUsed[key] = 1;
+        }
+
+        L.marker([lat, lng]).addTo(mapRef.current as L.Map).bindPopup(`
+          <div>
+            <h4>${name}</h4>
+            <p>Coordonnées : ${lat}, ${lng}</p>
+            <p>Poste Source : ${ps}</p>
+            <p>Date de Mise en Service : ${date}</p>
+          </div>
+        `);
       });
     }
   }, [locations, searchQuery]);
 
   // Ajustement de la vue de la carte pour la région sélectionnée
   useEffect(() => {
-    // Vérifiez que mapRef.current n'est pas null avant d'utiliser
     if (selectedRegion && mapRef.current) {
-      const mapInstance = mapRef.current as L.Map; // Casting explicite
       const geoJsonLayer = L.geoJSON(selectedRegion.geometry, {
         style: {
-          color: "#ff7800",
-          weight: 5,
-          opacity: 0.65,
+          color: "#000",
+          weight: 0.6,
+          fillOpacity: 0.1,
         },
-      }).addTo(mapInstance);
-      mapInstance.fitBounds(geoJsonLayer.getBounds());
+      }).addTo(mapRef.current);
+      mapRef.current.fitBounds(geoJsonLayer.getBounds());
     }
   }, [selectedRegion]);
 
