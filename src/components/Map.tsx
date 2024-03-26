@@ -34,23 +34,23 @@ function Map({ searchQuery }: MapProps) {
       }).addTo(mapInstance);
 
       // Fonction GeoJson Regions France
-      // fetch("/region.geojson")
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     L.geoJSON(data, {
-      //       style: () => ({
-      //         color: "#000", // Couleur des bordures des régions
-      //         //fillColor: "#1a1d62", // Couleur de remplissage des régions
-      //         fillOpacity: 0, // Transparence du remplissage
-      //         weight: 0.5,
-      //       }),
-      //       onEachFeature: (feature, layer) => {
-      //         if (feature.properties && feature.properties.nom) {
-      //           layer.bindPopup(`<h4>Région: ${feature.properties.nom}</h4>`);
-      //         }
-      //       },
-      //     }).addTo(mapInstance);
-      //   });
+      fetch("/region.geojson")
+        .then((response) => response.json())
+        .then((data) => {
+          L.geoJSON(data, {
+            style: () => ({
+              color: "#000", // Couleur des bordures des régions
+              //fillColor: "#1a1d62", // Couleur de remplissage des régions
+              fillOpacity: 0, // Transparence du remplissage
+              weight: 0.5,
+            }),
+            onEachFeature: (feature, layer) => {
+              if (feature.properties && feature.properties.nom) {
+                layer.bindPopup(`<h4>Région: ${feature.properties.nom}</h4>`);
+              }
+            },
+          }).addTo(mapInstance);
+        });
 
       // Filtre de recherche (name, ps, date)
       const filteredLocations = searchQuery
