@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Map from "./components/Map";
 import SearchBar from "./components/Searchbar";
-import Filter, { RegionFeature } from "./components/Filter";
+import Filter, { RegionFeature } from "./components/FIlter";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,7 +15,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-950">
+    <div className="flex min-h-screen bg-slate-900">
       <div className="w-48">
         <div className="mb-4">
           <SearchBar onSearch={handleSearch} />
