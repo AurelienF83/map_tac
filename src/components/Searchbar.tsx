@@ -15,15 +15,15 @@ function SearchBar({ onSearch, placeholder = "Recherche..." }: SearchBarProps) {
 
   return (
     <div className="">
-      <form onSubmit={handleSubmit} className="flex border-2 border-gray-200 rounded-lg overflow-hidden">
+      <form onSubmit={handleSubmit} className="flex border-2 border-gray-200 rounded-md overflow-hidden">
         <input
           type="text"
-          className="px-4 py-2 w-80 lg:w-96 text-gray-700 leading-tight focus:outline-none"
+          className="px-1 py-2 w-full text-gray-700 leading-tight focus:outline-none flex-grow text-xs"
           placeholder={placeholder}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="submit" className="flex items-center justify-center px-4 border-l bg-gray-700 text-white">
+        <button type="submit" className="flex items-center justify-center px-3 bg-gray-200 text-gray-900">
           <svg
             className="h-4 w-4"
             fill="none"
