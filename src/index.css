@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+svg.leaflet-attribution-flag {
+  display: none !important;
+}
+
 .custom-popup {
     color: #333;
   }
