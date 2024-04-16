@@ -14,16 +14,21 @@ const App = () => {
     setSelectedRegion(region);
   };
 
+  const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
+  const handleSelectStatus = (status: string | null) => {
+    setSelectedStatus(status);
+  };
+
   return (
     <div className="flex min-h-screen bg-slate-900">
       <div className="w-48">
         <div className="mb-4">
           <SearchBar onSearch={handleSearch} />
         </div>
-        <Filter onSelectRegion={handleSelectRegion} />
+        <Filter onSelectRegion={handleSelectRegion} onSelectStatus={handleSelectStatus} />
       </div>
       <div className="flex-grow">
-        <Map searchQuery={searchQuery} selectedRegion={selectedRegion} />
+        <Map searchQuery={searchQuery} selectedRegion={selectedRegion} selectedStatus={selectedStatus} />
       </div>
     </div>
   );
