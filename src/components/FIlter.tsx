@@ -44,7 +44,7 @@ const Filter = ({ onSelectRegion, onSelectStatus }: FilterProps) => {
   };
   return (
     <div>
-      <div className="mb-4">
+      <div className="mb-4 py-1 px-1 bg-background rounded-md">
         <h1 className="text-white mb-2">Région</h1>
         {regions.map((region, index) => (
           <div key={index} className="flex items-center mb-1">
@@ -66,7 +66,7 @@ const Filter = ({ onSelectRegion, onSelectStatus }: FilterProps) => {
           </div>
         ))}
       </div>
-      <div>
+      <div className="mb-4 py-1 px-1 bg-background rounded-lg border border-border">
         <h1 className="text-white mb-2">Status</h1>
         {status.map((status, index) => (
           <div key={index} className="flex items-center mb-1">

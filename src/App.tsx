@@ -20,7 +20,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-900">
+    <div className="flex min-h-screen bg-black">
       <div className="w-48">
         <div className="mb-4">
           <SearchBar onSearch={handleSearch} />
