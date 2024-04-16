@@ -111,7 +111,7 @@ function Map({ searchQuery, selectedRegion, selectedStatus }: MapProps) {
     }
   }, [selectedRegion]);
 
-  return <div id="map" style={{ height: "650px", width: "100%" }} />;
+  return <div id="map" style={{ height: "650px", width: "100%", borderRadius: "8px" }} />;
 }
 
 export default Map;
