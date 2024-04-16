@@ -15,9 +15,10 @@ type Location = {
 type MapProps = {
   searchQuery: string;
   selectedRegion?: RegionFeature | null;
+  selectedStatus?: string | null; // Ajout du statut sélectionné
 };
 
-function Map({ searchQuery, selectedRegion }: MapProps) {
+function Map({ searchQuery, selectedRegion, selectedStatus }: MapProps) {
   const mapRef = useRef<L.Map | null>(null);
   const [locations, setLocations] = useState<Location[]>([]);
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null);
@@ -48,7 +49,7 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
       });
 
       // Fonction Recherche
-      const filteredLocations = searchQuery
+      let filteredLocations = searchQuery
         ? locations.filter(
             (location) =>
               location.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -56,6 +57,11 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
               location.date.includes(searchQuery)
           )
         : locations;
+
+      // Filtrer par statut si sélectionné
+      if (selectedStatus) {
+        filteredLocations = filteredLocations.filter((location) => location.status === selectedStatus);
+      }
 
       // Fonction Offset
       const coordsUsed: { [key: string]: number } = {};
@@ -84,7 +90,7 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
         `);
       });
     }
-  }, [locations, searchQuery]);
+  }, [locations, searchQuery, selectedStatus]);
 
   // Ajustement de la vue de la carte pour la région sélectionnée
   useEffect(() => {
