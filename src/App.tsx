@@ -20,15 +20,29 @@ const App = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-black">
-      <div className="w-48">
-        <div className="mb-4">
-          <SearchBar onSearch={handleSearch} />
+    <div className="min-h-screen bg-black">
+      {" "}
+      {/* Background sur toute la page */}
+      <div className="mx-auto max-w-screen-xl">
+        {" "}
+        {/* Centre le contenu et applique une largeur max */}
+        <div className="flex flex-col md:flex-row space-x-4 md:space-x-4">
+          {" "}
+          {/* Stack verticalement sur mobile, horizontalement sur desktop */}
+          <div className="w-full md:w-48 px-4 pt-2">
+            {" "}
+            {/* Responsive width and padding */}
+            <div className="mb-4">
+              <SearchBar onSearch={handleSearch} />
+            </div>
+            <Filter onSelectRegion={handleSelectRegion} onSelectStatus={handleSelectStatus} />
+          </div>
+          <div className="mt-2 py-2 px-2 flex-grow border border-border rounded-lg bg-background">
+            {" "}
+            {/* Responsive padding */}
+            <Map searchQuery={searchQuery} selectedRegion={selectedRegion} selectedStatus={selectedStatus} />
+          </div>
         </div>
-        <Filter onSelectRegion={handleSelectRegion} onSelectStatus={handleSelectStatus} />
-      </div>
-      <div className="flex-grow">
-        <Map searchQuery={searchQuery} selectedRegion={selectedRegion} selectedStatus={selectedStatus} />
       </div>
     </div>
   );
