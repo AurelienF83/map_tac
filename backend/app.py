@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/locations', methods=['GET'])
 def get_locations():
-    df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240409.xlsx')
+    df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240409 - Copie.xlsx')
     
     # df = pd.read_excel('C:\\Users\\Aurelien\\Desktop\\map_tac\\Mise en service_TAC_20240304.xlsx')
 
@@ -23,12 +23,13 @@ def get_locations():
     df['name'] = df['Nom du parc']
     df['date'] = df['Date'].dt.strftime('%d/%m/%Y')
     df['ps'] = df ['Adresse PS']
+    df['status'] = df['Status']
 
     # Supprimer à nouveau les lignes où 'lat' ou 'lng' sont NaN après la conversion
     df = df.dropna(subset=['lat', 'lng'])
 
     # Liste retournée au format JSON
-    locations = df[['lat', 'lng', 'name', 'date', 'ps']].to_dict(orient='records')
+    locations = df[['lat', 'lng', 'name', 'date', 'ps', 'status']].to_dict(orient='records')
 
     return jsonify(locations)
 

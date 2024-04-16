@@ -9,6 +9,7 @@ type Location = {
   name: string;
   date: string;
   ps: string;
+  status: string;
 };
 
 type MapProps = {
@@ -60,7 +61,7 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
       const coordsUsed: { [key: string]: number } = {};
       filteredLocations.forEach((location) => {
         let { lat, lng } = location;
-        const { name, date, ps } = location;
+        const { name, date, ps, status } = location;
         const key = `${lat}-${lng}`;
 
         if (coordsUsed[key]) {
@@ -78,6 +79,7 @@ function Map({ searchQuery, selectedRegion }: MapProps) {
           <p>Coordonnées : ${lat}, ${lng}</p>
           <p>Poste Source : ${ps}</p>
           <p>Date de Mise en Service : ${date}</p>
+          <p>Etat : ${status}</p>
         </div>
         `);
       });
