@@ -11,7 +11,7 @@ export type RegionFeature = {
 };
 
 export type FilterProps = {
-  onSelectRegion: (region: RegionFeature | null) => void; // Accepte null aussi
+  onSelectRegion: (region: RegionFeature | null) => void; // Accepte null
 };
 
 const Filter = ({ onSelectRegion }: FilterProps) => {
