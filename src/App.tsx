@@ -2,6 +2,7 @@ import { useState } from "react";
 import Map from "./components/Map";
 import SearchBar from "./components/Searchbar";
 import Filter, { RegionFeature } from "./components/FIlter";
+import Card from "./components/Card";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,6 +43,7 @@ const App = () => {
             {/* Responsive padding */}
             <Map searchQuery={searchQuery} selectedRegion={selectedRegion} selectedStatus={selectedStatus} />
           </div>
+          <Card />
         </div>
       </div>
     </div>
