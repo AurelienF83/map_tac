@@ -26,10 +26,10 @@ const App = () => {
       <div className="mx-auto max-w-screen-xl">
         {" "}
         {/* Centre le contenu et applique une largeur max */}
-        <div className="flex flex-col md:flex-row space-x-4 md:space-x-4">
+        <div className="flex flex-col md:flex-row space-x-0 md:space-x-0">
           {" "}
           {/* Stack verticalement sur mobile, horizontalement sur desktop */}
-          <div className="w-full md:w-48 px-4 pt-2">
+          <div className="w-full md:w-48 mt-2">
             {" "}
             {/* Responsive width and padding */}
             <div className="mb-4">
@@ -37,7 +37,7 @@ const App = () => {
             </div>
             <Filter onSelectRegion={handleSelectRegion} onSelectStatus={handleSelectStatus} />
           </div>
-          <div className="mt-2 py-2 px-2 flex-grow border border-border rounded-lg bg-background">
+          <div className="mt-2 py-2 px-2 flex-grow border border-border rounded-lg bg-red-500">
             {" "}
             {/* Responsive padding */}
             <Map searchQuery={searchQuery} selectedRegion={selectedRegion} selectedStatus={selectedStatus} />
