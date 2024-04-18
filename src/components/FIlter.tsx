@@ -57,7 +57,7 @@ const Filter = ({ onSelectRegion, onSelectStatus }: FilterProps) => {
                 className="appearance-none cursor-pointer border border-primary rounded-sm checked:bg-primary"
                 checked={selectedRegionName === region.properties.nom}
                 onChange={(e) => handleRegionChange(region, e)}
-                style={{ height: "12px", width: "12px" }} // Taille fixe pour la checkbox
+                style={{ height: "12px", width: "12px" }}
               />
             </div>
             <label
