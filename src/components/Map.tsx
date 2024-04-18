@@ -35,8 +35,8 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
   useEffect(() => {
     if (!mapRef.current && document.getElementById("map")) {
       mapRef.current = L.map("map").setView([46.8, 2.2], 6);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors",
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(mapRef.current);
     }
 

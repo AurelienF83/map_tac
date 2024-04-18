@@ -26,11 +26,29 @@ type CardsContainerProps = {
 };
 
 const CardsContainer: React.FC<CardsContainerProps> = ({ statusCounts }) => {
+  const percentageRéalisée =
+    statusCounts.total > 0 ? ((statusCounts.réalisée / statusCounts.total) * 100).toFixed(2) : 0;
+  const percentageÀVenir = statusCounts.total > 0 ? ((statusCounts.àVenir / statusCounts.total) * 100).toFixed(2) : 0;
+  const percentageReportée =
+    statusCounts.total > 0 ? ((statusCounts.reportée / statusCounts.total) * 100).toFixed(2) : 0;
+
   const cardsData = [
-    { title: "Total", count: statusCounts.total, description: "+15% depuis le dernier mois" },
-    { title: "Réalisée", count: statusCounts.réalisée, description: "+10% depuis le dernier mois" },
-    { title: "À venir", count: statusCounts.àVenir, description: "+25% depuis le dernier mois" },
-    { title: "Reportée", count: statusCounts.reportée, description: "+35% depuis le dernier mois" },
+    { title: "Total", count: statusCounts.total, description: "Début des données 12/12/2023" },
+    {
+      title: "Réalisée",
+      count: statusCounts.réalisée,
+      description: `${percentageRéalisée}%`,
+    },
+    {
+      title: "À venir",
+      count: statusCounts.àVenir,
+      description: `${percentageÀVenir}%`,
+    },
+    {
+      title: "Reportée",
+      count: statusCounts.reportée,
+      description: `${percentageReportée}%`,
+    },
   ];
 
   return (
