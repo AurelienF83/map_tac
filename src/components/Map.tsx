@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { RegionFeature } from "./FIlter";
 
-type Location = {
+export type Location = {
   lat: number;
   lng: number;
   name: string;
