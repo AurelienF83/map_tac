@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { RegionFeature } from "./FIlter";
 
-export type Location = {
+type Location = {
   lat: number;
   lng: number;
   name: string;
@@ -12,13 +12,21 @@ export type Location = {
   status: string;
 };
 
+type StatusCounts = {
+  total: number;
+  réalisée: number;
+  àVenir: number;
+  reportée: number;
+};
+
 type MapProps = {
   searchQuery: string;
   selectedRegion?: RegionFeature | null;
   selectedStatus?: string | null; // Ajout du statut sélectionné
+  setStatusCounts: (counts: StatusCounts) => void; // Nouvelle prop pour mettre à jour les comptes
 };
 
-function Map({ searchQuery, selectedRegion, selectedStatus }: MapProps) {
+function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: MapProps) {
   const mapRef = useRef<L.Map | null>(null);
   const [locations, setLocations] = useState<Location[]>([]);
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null);
@@ -47,6 +55,21 @@ function Map({ searchQuery, selectedRegion, selectedStatus }: MapProps) {
           mapRef.current!.removeLayer(layer);
         }
       });
+
+      const counts: StatusCounts = {
+        // Corrected definition
+        total: locations.length,
+        réalisée: locations.filter((loc) => loc.status === "Réalisée").length,
+        àVenir: locations.filter((loc) => loc.status === "À venir").length,
+        reportée: locations.filter((loc) => loc.status === "Reportée").length,
+      };
+
+      console.log("Total:", counts.total);
+      console.log("Réalisée:", counts.réalisée);
+      console.log("À venir:", counts.àVenir);
+      console.log("Reportée:", counts.reportée);
+
+      setStatusCounts(counts);
 
       // Fonction Recherche
       let filteredLocations = searchQuery
