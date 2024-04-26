@@ -33,7 +33,7 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ statusCounts }) => {
     statusCounts.total > 0 ? ((statusCounts.reportée / statusCounts.total) * 100).toFixed(2) : 0;
 
   const cardsData = [
-    { title: "Total", count: statusCounts.total, description: "Début des données 12/12/2023" },
+    { title: "Total", count: statusCounts.total, description: "Début des données : 12/12/2023" },
     {
       title: "Réalisée",
       count: statusCounts.réalisée,
