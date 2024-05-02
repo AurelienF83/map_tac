@@ -105,7 +105,7 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
         L.marker([lat, lng]).addTo(mapRef.current as L.Map).bindPopup(`
         <div class="custom-popup">
           <h4>${name}</h4>
-          <p>Coordonnées : ${lat}, ${lng}</p>
+          <p>Coordonnées GPS : ${lat}, ${lng}</p>
           <p>Poste Source : ${ps}</p>
           <p>Date de Mise en Service : ${date}</p>
           <p>Etat : ${status}</p>
