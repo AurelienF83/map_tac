@@ -12,7 +12,7 @@ export type RegionFeature = {
 
 export type FilterProps = {
   onSelectRegion: (region: RegionFeature | null) => void; // Accepte null
-  onSelectStatus: (status: string | null) => void; // Nouvelle prop pour gérer le status
+  onSelectStatus: (status: string | null) => void;
 };
 
 const status = ["Réalisée", "Reportée", "À venir"]; // Les status possibles
