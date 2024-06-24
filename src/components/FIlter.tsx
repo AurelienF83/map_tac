@@ -44,8 +44,8 @@ const Filter = ({ onSelectRegion, onSelectStatus }: FilterProps) => {
   };
   return (
     <div className="flex flex-col w-full md:w-48">
-      <div className="mb-4 py-1 px-1 bg-background rounded-lg border border-border">
-        <h1 className="text-white mb-2">Région</h1>
+      <div className="mb-4 py-1 px-1 bg-card rounded-lg border border-border">
+        <h1 className="text-card-foreground font-semibold mb-2">Région</h1>
         {regions.map((region, index) => (
           <div key={index} className="flex items-center mb-1">
             <div className="flex items-center justify-center w-3 h-3">
@@ -62,15 +62,15 @@ const Filter = ({ onSelectRegion, onSelectStatus }: FilterProps) => {
             </div>
             <label
               htmlFor={`checkbox-${region.properties.nom}`}
-              className="ml-1 text-xs text-white hover:bg-secondary cursor-pointer w-full"
+              className="ml-1 text-xs text-card-foreground font-normal hover:bg-accent cursor-pointer w-full"
             >
               {region.properties.nom}
             </label>
           </div>
         ))}
       </div>
-      <div className="mb-4 py-1 px-1 bg-background rounded-lg border border-border">
-        <h1 className="text-white mb-2">Status</h1>
+      <div className="mb-4 py-1 px-1 bg-card rounded-lg border border-border">
+        <h1 className="text-card-foreground font-semibold mb-2">Status</h1>
         {status.map((status, index) => (
           <div key={index} className="flex items-center mb-1">
             <div className="flex items-center justify-center w-3 h-3">
@@ -86,7 +86,7 @@ const Filter = ({ onSelectRegion, onSelectStatus }: FilterProps) => {
             </div>
             <label
               htmlFor={`checkbox-status-${status}`}
-              className="w-48 cursor-pointer ml-1 text-xs text-white hover:bg-secondary"
+              className="w-48 cursor-pointer ml-1 text-xs text-card-foreground font-normal hover:bg-accent"
             >
               {status}
             </label>

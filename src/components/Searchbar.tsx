@@ -18,7 +18,7 @@ function SearchBar({ onSearch, placeholder = "Recherche..." }: SearchBarProps) {
       <form onSubmit={handleSubmit} className="flex border-2 border-border rounded-md overflow-hidden">
         <input
           type="text"
-          className=" bg-background px-1 py-2 w-full text-white leading-tight focus:outline-none flex-grow text-xs"
+          className=" bg-background px-1 py-2 w-full text-card-foreground font-normal leading-tight focus:outline-none flex-grow text-xs"
           placeholder={placeholder}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

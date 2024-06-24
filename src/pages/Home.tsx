@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-screen-xl">
         <div className="mb-4">
           <CardsContainer statusCounts={statusCounts} />
