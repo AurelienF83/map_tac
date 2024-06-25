@@ -3,6 +3,7 @@ import Map from "../components/Map";
 import SearchBar from "../components/Searchbar";
 import Filter, { RegionFeature } from "../components/FIlter";
 import CardsContainer from "../components/Card"; // Assurez-vous que ce chemin est correct et que CardsContainer est bien le nom du composant
+import Navbar from "@/components/Navbar";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +26,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-screen-xl">
+        <Navbar />
         <div className="mb-4">
           <CardsContainer statusCounts={statusCounts} />
         </div>

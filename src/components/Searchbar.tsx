@@ -25,7 +25,7 @@ function SearchBar({ onSearch, placeholder = "Recherche..." }: SearchBarProps) {
         />
         <button
           type="submit"
-          className="flex items-center justify-center px-3 bg-secondary text-white hover:bg-primary"
+          className="flex items-center justify-center px-3 bg-background text-primary hover:bg-accent"
         >
           <svg
             className="h-4 w-4"

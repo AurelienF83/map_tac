@@ -8,7 +8,7 @@ type CardProps = {
 // Composant pour une seule carte
 const Card: React.FC<CardProps> = ({ title, count, description }) => {
   return (
-    <div className="bg-background border border-border p-2 rounded-lg sm:mt-4">
+    <div className="bg-card border border-border p-2 rounded-lg sm:mt-4">
       <h2 className="text-sm text-card-foreground font-semibold mb-2">{title}</h2>
       <div className="text-2xl text-card-foreground font-semibold">{count}</div>
       <p className="text-xs text-card-foreground font-normal">{description}</p>
