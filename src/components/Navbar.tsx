@@ -2,16 +2,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 
-export default function Component() {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="bg-background border-b border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <nav className="bg-background">
+      <div className="container mx-auto px-0 sm:px-0 lg:px-0 flex justify-between items-center h-16">
         <div className="flex items-center">
           <img src="/MADE44.png" alt="Company Logo" className="h-10 w-auto" />
           <span className="ml-2 text-lg font-bold">MADE SA</span>
         </div>
-        <div className="hidden md:flex space-x-4 text-sm">
+        <div className="hidden md:flex space-x-4 text-sm font">
           <a href="#" className="text-foreground/60 hover:text-foreground/80 transition-colors">
             Map
           </a>
