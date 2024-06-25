@@ -11,15 +11,15 @@ export default function Navbar() {
           <img src="/MADE44.png" alt="Company Logo" className="h-10 w-auto" />
           <span className="ml-2 text-lg font-bold">MADE SA</span>
         </div>
-        <div className="hidden md:flex space-x-4 text-sm font">
-          <a href="#" className="text-foreground/60 hover:text-foreground/80 transition-colors">
+        <div className="hidden md:flex space-x-4 text-sm font-medium">
+          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">
             Map
           </a>
-          <a href="#" className="text-foreground/60 hover:text-foreground/80 transition-colors">
-            Docs
+          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">
+            Files
           </a>
-          <a href="#" className="text-foreground/60 hover:text-foreground/80 transition-colors">
-            Button 3
+          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">
+            Interventions
           </a>
         </div>
         <div className="hidden md:flex">
@@ -61,7 +61,9 @@ export default function Navbar() {
   );
 }
 
-function MenuIcon(props) {
+interface MenuIconProps extends React.SVGProps<SVGSVGElement> {}
+
+function MenuIcon(props: MenuIconProps) {
   return (
     <svg
       {...props}
