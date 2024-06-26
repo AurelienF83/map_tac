@@ -40,7 +40,7 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
       }).addTo(mapRef.current);
     }
 
-    fetch("http://127.0.0.1:5000/locations")
+    fetch("https://raw.githubusercontent.com/AurelienF83/json/main/datajson")
       .then((response) => response.json())
       .then((data) => setLocations(data))
       .catch((error) => console.error("Error fetching data: ", error));
