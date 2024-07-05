@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/locations', methods=['GET'])
 def get_locations():
-    df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240621.xlsx')
+    df = pd.read_excel('C:\\Users\\a.francesch\\Desktop\\Caroline\\Mise en service_TAC_20240628.xlsx')
     
     # df = pd.read_excel('C:\\Users\\Aurelien\\Desktop\\map_tac\\Mise en service_TAC_20240304.xlsx')
 
