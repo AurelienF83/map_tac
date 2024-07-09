@@ -23,9 +23,11 @@ export default function Navbar() {
             Interventions
           </Link>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex items-center">
           <Button>Login</Button>
-          <ModeToggle />
+          <div className="ml-2">
+            <ModeToggle />
+          </div>
         </div>
         <div className="md:hidden">
           <Button variant="outline" onClick={() => setIsOpen(!isOpen)}>
