@@ -4,20 +4,20 @@ import { Button } from "./ui/button";
 const files = [
   {
     name: "Document 1",
-    size: "2 MB",
-    date: "12/12/2023",
+    size: "640 Ko",
+    date: "12/12/2024",
     url: "#",
   },
   {
     name: "Document 2",
-    size: "1.5 MB",
-    date: "13/12/2023",
+    size: "872 Ko",
+    date: "13/12/2024",
     url: "#",
   },
   {
     name: "Document 3",
-    size: "3 MB",
-    date: "14/12/2023",
+    size: "64 Ko",
+    date: "14/12/2024",
     url: "#",
   },
 ];

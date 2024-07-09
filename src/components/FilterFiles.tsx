@@ -1,4 +1,3 @@
-import React from "react";
 import { Settings, FileText, FileCode, FileCog } from "lucide-react";
 
 const FilterFiles = () => {
