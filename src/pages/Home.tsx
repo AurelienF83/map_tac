@@ -35,7 +35,7 @@ const Home = () => {
           <CardsContainer statusCounts={statusCounts} />
         </div>
         <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-48 mr-2">
+          <div className="w-full md:w-52 mr-2">
             <div className="mb-4">
               <SearchBar onSearch={handleSearch} />
             </div>

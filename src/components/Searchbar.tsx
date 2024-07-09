@@ -14,7 +14,7 @@ function SearchBar({ onSearch, placeholder = "Recherche..." }: SearchBarProps) {
   };
 
   return (
-    <div className="flex flex-col w-full md:w-48">
+    <div className="flex flex-col w-full md:w-52">
       <form onSubmit={handleSubmit} className="flex border-2 border-border rounded-md overflow-hidden">
         <input
           type="text"

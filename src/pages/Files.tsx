@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import CardFiles from "@/components/CardFiles";
-import FilesFilter from "@/components/FilterFiles";
+import FilterFiles from "@/components/FilterFiles";
+import FileList from "@/components/Filelist";
 
 const Files = () => {
   return (
@@ -15,8 +16,11 @@ const Files = () => {
           <CardFiles />
         </div>
         <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-48 mr-2">
-            <FilesFilter />
+          <div className="w-full md:w-52 mr-2">
+            <FilterFiles />
+          </div>
+          <div className="flex-grow px-0 py-0 mt-0 md:mt-0 border border-border rounded-lg bg-background">
+            <FileList />
           </div>
         </div>
       </div>
