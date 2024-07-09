@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 
@@ -12,15 +13,15 @@ export default function Navbar() {
           <span className="ml-2 text-lg font-bold">MADE SA</span>
         </div>
         <div className="hidden md:flex space-x-4 text-sm font-medium">
-          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">
+          <Link to="/" className="text-foreground/80 hover:text-foreground transition-colors">
             Map
-          </a>
-          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">
+          </Link>
+          <Link to="/files" className="text-foreground/80 hover:text-foreground transition-colors">
             Files
-          </a>
-          <a href="#" className="text-foreground/80 hover:text-foreground transition-colors">
+          </Link>
+          <Link to="/inter" className="text-foreground/80 hover:text-foreground transition-colors">
             Interventions
-          </a>
+          </Link>
         </div>
         <div className="hidden md:flex">
           <Button>Login</Button>
@@ -35,24 +36,27 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-base">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="block px-3 py-2 rounded-md font-medium text-foreground/60 hover:text-foreground/80 transition-colors"
+              onClick={() => setIsOpen(false)}
             >
               Map
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/files"
               className="block px-3 py-2 rounded-md font-medium text-foreground/60 hover:text-foreground/80 transition-colors"
+              onClick={() => setIsOpen(false)}
             >
-              Docs
-            </a>
-            <a
-              href="#"
+              Files
+            </Link>
+            <Link
+              to="/inter"
               className="block px-3 py-2 rounded-md font-medium text-foreground/60 hover:text-foreground/80 transition-colors"
+              onClick={() => setIsOpen(false)}
             >
-              Button
-            </a>
+              Interventions
+            </Link>
             <Button className="w-full">Login</Button>
           </div>
         </div>
