@@ -1,4 +1,6 @@
 import Navbar from "@/components/Navbar";
+import CardFiles from "@/components/CardFiles";
+import FilesFilter from "@/components/FilterFiles";
 
 const Files = () => {
   return (
@@ -9,7 +11,14 @@ const Files = () => {
         </div>
       </div>
       <div className="px-4 sm:px-6 lg:px-8 mx-auto max-w-screen-xl">
-        <h1 className="text-2xl font-bold text-foreground">Files Page</h1>
+        <div className="mb-4">
+          <CardFiles />
+        </div>
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-48 mr-2">
+            <FilesFilter />
+          </div>
+        </div>
       </div>
     </div>
   );
