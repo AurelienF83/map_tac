@@ -2,7 +2,7 @@ import { Settings, FileText, FileCode, FileCog } from "lucide-react";
 
 const FilterFiles = () => {
   return (
-    <div className="flex flex-col w-full md:w-52">
+    <div className="flex flex-col w-full md:w-52 h-64">
       <div className="mb-4 py-1 px-1 bg-card rounded-lg border border-border">
         <button className="mb-1 py-1 px-2 flex items-center text-sm text-card-foreground font-semibold hover:bg-accent cursor-pointer w-full rounded-sm">
           <Settings className="mr-2" size={16} />
