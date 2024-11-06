@@ -17,6 +17,7 @@ type StatusCounts = {
   réalisée: number;
   àVenir: number;
   reportée: number;
+  inconnu: number;
 };
 
 type MapProps = {
@@ -31,6 +32,15 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
   const [locations, setLocations] = useState<Location[]>([]);
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null);
 
+  // Définition de la fonction normalizeStatus
+  function normalizeStatus(status: string): string {
+    return status
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
   // Initialisation de la carte et récupération des localisations
   useEffect(() => {
     if (!mapRef.current && document.getElementById("map")) {
@@ -41,6 +51,7 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
     }
 
     fetch("https://raw.githubusercontent.com/AurelienF83/json/main/datajson")
+      // fetch("http://127.0.0.1:5000/locations")
       .then((response) => response.json())
       .then((data) => setLocations(data))
       .catch((error) => console.error("Error fetching data: ", error));
@@ -50,24 +61,40 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
   useEffect(() => {
     if (mapRef.current) {
       // Suppression des marqueurs existants
-      mapRef.current!.eachLayer((layer) => {
+      mapRef.current.eachLayer((layer) => {
         if (layer instanceof L.Marker) {
           mapRef.current!.removeLayer(layer);
         }
       });
 
+      // Calcul des comptes avec normalisation des statuts
       const counts: StatusCounts = {
-        // Corrected definition
         total: locations.length,
-        réalisée: locations.filter((loc) => loc.status === "Réalisée").length,
-        àVenir: locations.filter((loc) => loc.status === "À venir").length,
-        reportée: locations.filter((loc) => loc.status === "Reportée").length,
+        réalisée: 0,
+        àVenir: 0,
+        reportée: 0,
+        inconnu: 0,
       };
+
+      locations.forEach((loc) => {
+        const status = normalizeStatus(loc.status);
+        if (status === "realisee") {
+          counts.réalisée += 1;
+        } else if (status === "a venir") {
+          counts.àVenir += 1;
+        } else if (status === "reportee") {
+          counts.reportée += 1;
+        } else {
+          counts.inconnu += 1;
+          console.log(`Statut inconnu trouvé: "${loc.status}" après normalisation: "${status}"`);
+        }
+      });
 
       console.log("Total:", counts.total);
       console.log("Réalisée:", counts.réalisée);
       console.log("À venir:", counts.àVenir);
       console.log("Reportée:", counts.reportée);
+      console.log("Inconnu:", counts.inconnu);
 
       setStatusCounts(counts);
 
@@ -81,9 +108,14 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
           )
         : locations;
 
+      // Normaliser le statut sélectionné
+      const normalizedSelectedStatus = selectedStatus ? normalizeStatus(selectedStatus) : null;
+
       // Filtrer par statut si sélectionné
-      if (selectedStatus) {
-        filteredLocations = filteredLocations.filter((location) => location.status === selectedStatus);
+      if (normalizedSelectedStatus) {
+        filteredLocations = filteredLocations.filter(
+          (location) => normalizeStatus(location.status) === normalizedSelectedStatus
+        );
       }
 
       // Fonction Offset
@@ -103,14 +135,14 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
         }
 
         L.marker([lat, lng]).addTo(mapRef.current as L.Map).bindPopup(`
-        <div class="custom-popup">
-          <h4>${name}</h4>
-          <p>Coordonnées GPS : ${lat}, ${lng}</p>
-          <p>Poste Source : ${ps}</p>
-          <p>Date de Mise en Service : ${date}</p>
-          <p>Etat : ${status}</p>
-        </div>
-        `);
+          <div class="custom-popup">
+            <h4>${name}</h4>
+            <p>Coordonnées GPS : ${lat}, ${lng}</p>
+            <p>Poste Source : ${ps}</p>
+            <p>Date de Mise en Service : ${date}</p>
+            <p>État : ${status}</p>
+          </div>
+          `);
       });
     }
   }, [locations, searchQuery, selectedStatus]);
