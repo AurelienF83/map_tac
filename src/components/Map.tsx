@@ -67,7 +67,7 @@ function Map({ searchQuery, selectedRegion, selectedStatus, setStatusCounts }: M
         }
       });
 
-      // Calcul des comptes avec normalisation des statuts
+      // Calcul des counts avec normalisation des statuts
       const counts: StatusCounts = {
         total: locations.length,
         réalisée: 0,
